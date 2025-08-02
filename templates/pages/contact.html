@@ -1,5 +1,6 @@
 {% extends 'layout/base.html' %}
 {% load static %}
+{% load i18n %}
 {% block content %}
     <main class="main">
         {% if messages %}
@@ -12,15 +13,16 @@
         <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
             <div class="container">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{% url 'pages:home' %}">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Contact us</li>
+                    <li class="breadcrumb-item"><a href="{% url 'pages:home' %}">{% trans 'Home' %}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{% trans 'Contact u' %}s</li>
                 </ol>
             </div><!-- End .container -->
         </nav><!-- End .breadcrumb-nav -->
         <div class="container">
             <div class="page-header page-header-big text-center"
                  style="background-image: url('{% static 'assets/images/contact-header-bg.jpg' %}')">
-                <h1 class="page-title text-white">Contact us<span class="text-white">keep in touch with us</span></h1>
+                <h1 class="page-title text-white">{% trans 'Contact us' %}<span
+                        class="text-white">keep in touch with us</span></h1>
             </div><!-- End .page-header -->
         </div><!-- End .container -->
 
@@ -28,10 +30,14 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 mb-2 mb-lg-0">
-                        <h2 class="title mb-1">Contact Information</h2><!-- End .title mb-2 -->
-                        <p class="mb-3">Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu
-                            pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus
-                            sed, urna.</p>
+                        <h2 class="title mb-1">{% trans 'Contact Information' %}</h2><!-- End .title mb-2 -->
+                        <p class="mb-3">
+                            {% blocktrans %}
+                                Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu
+                                pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus
+                                sed, urna
+                            {% endblocktrans %}
+                        </p>
                         <div class="row">
                             <div class="col-sm-7">
                                 <div class="contact-info">

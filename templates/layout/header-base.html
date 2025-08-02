@@ -1,4 +1,6 @@
 {% load static %}
+{% load i18n %}
+{% load my_tags %}
 <header class="header">
     <div class="header-top">
         <div class="container">
@@ -14,12 +16,16 @@
                 </div><!-- End .header-dropdown -->
 
                 <div class="header-dropdown">
-                    <a href="#">Eng</a>
+                    {% get_current_language as lang %}
+                    <a href="#">{{ lang }}</a>
                     <div class="header-menu">
+                        {% get_available_languages as all_langs %}
                         <ul>
-                            <li><a href="#">English</a></li>
-                            <li><a href="#">French</a></li>
-                            <li><a href="#">Spanish</a></li>
+                            {% for l in all_langs %}
+                                {% if l.0 != lang %}
+                                    <li><a href="{% get_full_path request l.0 %}">{{ l.0|upper }}</a></li>
+                                {% endif %}
+                            {% endfor %}
                         </ul>
                     </div><!-- End .header-menu -->
                 </div><!-- End .header-dropdown -->
