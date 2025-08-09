@@ -6,6 +6,9 @@ class BaseModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('created_at'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('updated_at'))
 
+    class Meta:
+        abstract = True
+
 
 class ContactModel(BaseModel):
     name = models.CharField(max_length=128, verbose_name=_('name'))

@@ -24,7 +24,9 @@ urlpatterns = []
 
 urlpatterns += i18n_patterns(
     path('admin/', admin.site.urls),
-    path('', include('pages.urls', namespace='pages'))
+    path('products/', include('products.urls', namespace='products')),
+    path('blogs/', include('blogs.urls', namespace='blogs')),
+    path('', include('pages.urls', namespace='pages')),
 )
 
 if settings.DEBUG:

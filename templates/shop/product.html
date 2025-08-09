@@ -5,9 +5,8 @@
         <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
             <div class="container d-flex align-items-center">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Products</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Default</li>
+                    <li class="breadcrumb-item"><a href="{% url 'pages:home' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'products:shop' %}">Products</a></li>
                 </ol>
 
                 <nav class="product-pager ml-auto" aria-label="Product">
@@ -32,8 +31,8 @@
                             <div class="product-gallery product-gallery-vertical">
                                 <div class="row">
                                     <figure class="product-main-image">
-                                        <img id="product-zoom" src="assets/images/products/single/1.jpg"
-                                             data-zoom-image="assets/images/products/single/1-big.jpg"
+                                        <img id="product-zoom" src="{{ product.image.url }}"
+                                             data-zoom-image="{{ product.image.url }}"
                                              alt="product image">
 
                                         <a href="#" id="btn-product-gallery" class="btn-product-gallery">
@@ -42,30 +41,14 @@
                                     </figure><!-- End .product-main-image -->
 
                                     <div id="product-zoom-gallery" class="product-image-gallery">
-                                        <a class="product-gallery-item active" href="#"
-                                           data-image="assets/images/products/single/1.jpg"
-                                           data-zoom-image="assets/images/products/single/1-big.jpg">
-                                            <img src="assets/images/products/single/1-small.jpg" alt="product side">
-                                        </a>
-
-                                        <a class="product-gallery-item" href="#"
-                                           data-image="assets/images/products/single/2.jpg"
-                                           data-zoom-image="assets/images/products/single/2-big.jpg">
-                                            <img src="assets/images/products/single/2-small.jpg" alt="product cross">
-                                        </a>
-
-                                        <a class="product-gallery-item" href="#"
-                                           data-image="assets/images/products/single/3.jpg"
-                                           data-zoom-image="assets/images/products/single/3-big.jpg">
-                                            <img src="assets/images/products/single/3-small.jpg"
-                                                 alt="product with model">
-                                        </a>
-
-                                        <a class="product-gallery-item" href="#"
-                                           data-image="assets/images/products/single/4.jpg"
-                                           data-zoom-image="assets/images/products/single/4-big.jpg">
-                                            <img src="assets/images/products/single/4-small.jpg" alt="product back">
-                                        </a>
+                                        {% for image in product.images.all %}
+                                            <a class="product-gallery-item {% if forloop.first %}active{% endif %}"
+                                               href="#"
+                                               data-image="{{ image.image.url }}"
+                                               data-zoom-image="{{ image.image.url }}">
+                                                <img src="{{ image.image.url }}" alt="product side">
+                                            </a>
+                                        {% endfor %}
                                     </div><!-- End .product-image-gallery -->
                                 </div><!-- End .row -->
                             </div><!-- End .product-gallery -->
@@ -73,7 +56,7 @@
 
                         <div class="col-md-6">
                             <div class="product-details">
-                                <h1 class="product-title">Dark yellow lace cut out swing dress</h1>
+                                <h1 class="product-title">{{ product.title }}</h1>
                                 <!-- End .product-title -->
 
                                 <div class="ratings-container">
@@ -85,23 +68,21 @@
                                 </div><!-- End .rating-container -->
 
                                 <div class="product-price">
-                                    $84.00
+                                    ${{ product.price }}
                                 </div><!-- End .product-price -->
 
                                 <div class="product-content">
-                                    <p>Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus
-                                        libero eu augue. Morbi purus libero, faucibus adipiscing. Sed lectus. </p>
+                                    <p>{{ product.short_description }}</p>
                                 </div><!-- End .product-content -->
 
                                 <div class="details-filter-row details-row-size">
                                     <label>Color:</label>
 
                                     <div class="product-nav product-nav-thumbs">
+
                                         <a href="#" class="active">
-                                            <img src="assets/images/products/single/1-thumb.jpg" alt="product desc">
-                                        </a>
-                                        <a href="#">
-                                            <img src="assets/images/products/single/2-thumb.jpg" alt="product desc">
+                                            <img src="{% static 'assets/images/products/single/1-thumb.jpg' %}"
+                                                 alt="product desc">
                                         </a>
                                     </div><!-- End .product-nav -->
                                 </div><!-- End .details-filter-row -->
@@ -111,10 +92,9 @@
                                     <div class="select-custom">
                                         <select name="size" id="size" class="form-control">
                                             <option value="#" selected="selected">Select a size</option>
-                                            <option value="s">Small</option>
-                                            <option value="m">Medium</option>
-                                            <option value="l">Large</option>
-                                            <option value="xl">Extra Large</option>
+                                            {% for product_quantity in product.products_quantity.all %}
+                                                <option value="{{ product_quantity.sizes.id }}">{{ product_quantity.sizes.title }}</option>
+                                            {% endfor %}
                                         </select>
                                     </div><!-- End .select-custom -->
 

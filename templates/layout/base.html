@@ -184,12 +184,14 @@
 <!-- Plugins JS File -->
 <script src="{% static 'assets/js/jquery.min.js' %}"></script>
 <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'assets/js/jquery.hover' %}Intent.min.js"></script>
+<script src="{% static 'assets/js/jquery.hoverIntent.min.js' %}"></script>
 <script src="{% static 'assets/js/jquery.waypoints.min.js' %}"></script>
 <script src="{% static 'assets/js/superfish.min.js' %}"></script>
 <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
 <!-- Main JS File -->
 <script src="{% static 'assets/js/main.js' %}"></script>
+
+{% block extra_js %}{% endblock %}
 </body>
 
 
