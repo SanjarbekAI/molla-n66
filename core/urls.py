@@ -24,7 +24,9 @@ urlpatterns = []
 
 urlpatterns += i18n_patterns(
     path('admin/', admin.site.urls),
+    path('accounts/', include('accounts.urls', namespace='accounts')),
     path('products/', include('products.urls', namespace='products')),
+    path('basket/', include('basket.urls', namespace='basket')),
     path('blogs/', include('blogs.urls', namespace='blogs')),
     path('', include('pages.urls', namespace='pages')),
 )

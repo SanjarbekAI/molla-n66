@@ -88,7 +88,8 @@
                     <form action="{% url 'products:shop' %}" method="get">
                         <div class="header-search-wrapper">
                             <label for="q" class="sr-only">Search</label>
-                            <input onchange="addUrlParameter('q', {{ request.GET.q|default:'' }})" value="{{ request.GET.q|default:'' }}"
+                            <input onchange="addUrlParameter('q', {{ request.GET.q|default:'' }})"
+                                   value="{{ request.GET.q|default:'' }}"
                                    type="search" class="form-control" name="q" id="q"
                                    placeholder="Search in...">
                         </div><!-- End .header-search-wrapper -->

@@ -40,7 +40,8 @@
 
 <body>
 <div class="page-wrapper">
-    {% if request.path == '/' %}
+    {% url 'pages:home' as home_url %}
+    {% if request.path == home_url %}
         {% include 'layout/header-home.html' %}
     {% else %}
         {% include 'layout/header-base.html' %}

@@ -35,7 +35,20 @@
                                     </div><!-- End .header-menu -->
                                 </div>
                             </li>
-                            <li><a href="#signin-modal" data-toggle="modal">Sign in / Sign up</a></li>
+                            {% if request.user.is_authenticated %}
+                                <form method="post" action="{% url 'accounts:logout' %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-link"
+                                            style="border: none; background: none; padding: 0; text-decoration: none;
+                                             cursor: pointer; margin-left: 10px">
+                                        Logout
+                                    </button>
+                                </form>
+
+
+                            {% else %}
+                                <li><a href="{% url 'accounts:login' %}">Sign in</a></li>
+                            {% endif %}
                         </ul>
                     </li>
                 </ul><!-- End .top-menu -->
